@@ -1,0 +1,63 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "amzn2-ami-hvm-2.0.*-x86_64-gp2",
+          "root-device-type": "ebs"
+        },
+        "owners": ["amazon"],
+        "most_recent": true
+      },
+
+      "instance_type": "t3.micro",
+      "ssh_username": "ec2-user",
+      "ami_name": "nginx-immutable-{{timestamp}}",
+      "ami_description": "Immutable nginx AMI built with Packer",
+
+      "tags": {
+        "Name": "nginx-immutable",
+        "Environment": "production",
+        "BuiltBy": "packer"
+      }
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum update -y",
+        "sudo amazon-linux-extras enable nginx1",
+        "sudo yum install -y nginx",
+        "sudo systemctl enable nginx",
+        "sudo mkdir -p /var/www/html",
+        "sudo chown -R nginx:nginx /var/www/html"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "../app",
+      "destination": "/tmp/app"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo cp -r /tmp/app/* /var/www/html/",
+        "sudo chown -R nginx:nginx /var/www/html",
+        "sudo chmod -R 755 /var/www/html"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo systemctl start nginx",
+        "sudo systemctl status nginx || true"
+      ]
+    }
+  ]
+}
