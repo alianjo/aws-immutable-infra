@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: us-west-2
+  AWS_REGION: us-east-1
   TERRAFORM_VERSION: 1.6.0
   PACKER_VERSION: 1.9.4
 
@@ -36,15 +36,20 @@ jobs:
       with:
         packer_version: ${{ env.PACKER_VERSION }}
         
+    - name: Initialize Packer (install plugins)
+      run: |
+        cd packer
+        packer init .
+        
     - name: Validate Packer template
       run: |
         cd packer
-        packer validate nginx.json
+        packer validate nginx.pkr.hcl
         
     - name: Build AMI
       run: |
         cd packer
-        packer build nginx.json
+        packer build nginx.pkr.hcl
         
     - name: Get AMI ID
       id: get-ami-id
@@ -52,6 +57,7 @@ jobs:
         AMI_ID=$(aws ec2 describe-images \
           --owners self \
           --filters "Name=name,Values=nginx-immutable-*" \
+          --region $AWS_REGION \
           --query 'Images | sort_by(@, &CreationDate) | [-1].ImageId' \
           --output text)
         echo "$AMI_ID" > ami-id.txt
@@ -235,6 +241,7 @@ jobs:
         aws ec2 describe-images \
           --owners self \
           --filters "Name=name,Values=nginx-immutable-*" \
+          --region $AWS_REGION \
           --query "Images[?CreationDate<\`$NOW\`].{ID:ImageId,Snap:BlockDeviceMappings[0].Ebs.SnapshotId}" \
           --output text | while read image snapshot; do
             echo "Deregistering AMI: $image"
