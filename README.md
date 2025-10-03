@@ -22,7 +22,7 @@ graph LR
     A[GitHub Actions] --> B[Packer AMI Build]
     B --> C[Terraform Apply]
     C --> D[Auto Scaling Group]
-    D --> E[EC2 Instances (AMI)]
+    D --> E["EC2 Instances (AMI)"]
     E --> F[Application Load Balancer]
     F --> G[User Traffic]
 ```
