@@ -31,12 +31,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
         
-    - name: Install Packer
-      run: |
-        wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip
-        unzip packer_${PACKER_VERSION}_linux_amd64.zip
-        sudo mv packer /usr/local/bin/
-        packer version
+    - name: Setup Packer
+      uses: hashicorp/setup-packer@v2
+      with:
+        packer_version: ${{ env.PACKER_VERSION }}
         
     - name: Validate Packer template
       run: |
