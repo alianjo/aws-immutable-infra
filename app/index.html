@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Immutable Infrastructure Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tech-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tech-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .feature h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AWS Immutable Infrastructure</h1>
+            <p>Demonstrating DevOps Excellence with Infrastructure as Code</p>
+            <div class="status">✅ System Online</div>
+        </div>
+        
+        <div class="card">
+            <h2>🏗️ Architecture Overview</h2>
+            <p>This project showcases a production-ready immutable infrastructure setup using modern DevOps practices. The architecture includes:</p>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h3>📦 Packer</h3>
+                    <p>Creates immutable AMIs with nginx pre-installed and configured</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🏗️ Terraform</h3>
+                    <p>Manages infrastructure as code with VPC, ALB, and Auto Scaling Groups</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔄 GitHub Actions</h3>
+                    <p>Automates CI/CD pipeline for building and deploying infrastructure</p>
+                </div>
+                <div class="tech-item">
+                    <h3>☁️ AWS Services</h3>
+                    <p>VPC, ALB, ASG, CloudWatch, and more for scalable infrastructure</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>✨ Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🔒 Immutable Infrastructure</h3>
+                    <p>AMIs are built once and never modified, ensuring consistency and reliability across deployments.</p>
+                </div>
+                <div class="feature">
+                    <h3>📈 Auto Scaling</h3>
+                    <p>Automatically scales instances based on CPU utilization and traffic patterns.</p>
+                </div>
+                <div class="feature">
+                    <h3>🛡️ High Availability</h3>
+                    <p>Multi-AZ deployment with Application Load Balancer for fault tolerance.</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 Monitoring</h3>
+                    <p>CloudWatch integration for comprehensive monitoring and alerting.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔧 Infrastructure as Code</h3>
+                    <p>All infrastructure defined in code for version control and reproducibility.</p>
+                </div>
+                <div class="feature">
+                    <h3>🚀 CI/CD Pipeline</h3>
+                    <p>Automated building, testing, and deployment of infrastructure changes.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🛠️ DevOps Practices Demonstrated</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Infrastructure as Code (IaC):</strong> Terraform for declarative infrastructure management</li>
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Immutable Deployments:</strong> Packer-built AMIs ensure consistent deployments</li>
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Automation:</strong> GitHub Actions for complete CI/CD automation</li>
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Scalability:</strong> Auto Scaling Groups with CloudWatch metrics</li>
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Monitoring:</strong> CloudWatch integration for observability</li>
+                <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">✅ <strong>Security:</strong> VPC, security groups, and least privilege access</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Built with ❤️ using AWS, Terraform, Packer, and GitHub Actions</p>
+            <p>Instance ID: <span id="instance-id">Loading...</span> | AZ: <span id="availability-zone">Loading...</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Fetch instance metadata
+        fetch('/health')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('instance-id').textContent = data.instance_id || 'N/A';
+                document.getElementById('availability-zone').textContent = data.availability_zone || 'N/A';
+            })
+            .catch(error => {
+                console.error('Error fetching instance metadata:', error);
+                document.getElementById('instance-id').textContent = 'N/A';
+                document.getElementById('availability-zone').textContent = 'N/A';
+            });
+    </script>
+</body>
+</html>
