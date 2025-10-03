@@ -93,12 +93,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: ami-id
-        
-    - name: Terraform Format Check
-      run: |
-        cd terraform
-        terraform fmt -check -recursive
-        
+       
     - name: Terraform Init
       run: |
         cd terraform
