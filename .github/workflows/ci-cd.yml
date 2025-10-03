@@ -49,6 +49,7 @@ jobs:
     - name: Build AMI
       run: |
         cd packer
+        packer plugins install github.com/hashicorp/amazon
         packer build nginx.pkr.hcl
         
     - name: Get AMI ID
