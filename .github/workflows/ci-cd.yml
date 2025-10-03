@@ -39,13 +39,13 @@ jobs:
     - name: Validate Packer template
       run: |
         cd packer
-        packer validate nginx.pkr.hcl
+        packer validate nginx.pkr.json
         
     - name: Build AMI
       run: |
         cd packer
         packer plugins install github.com/hashicorp/amazon
-        packer build nginx.pkr.hcl
+        packer build nginx.pkr.json
         
     - name: Get AMI ID
       id: get-ami-id
