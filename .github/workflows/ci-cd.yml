@@ -36,11 +36,6 @@ jobs:
       with:
         packer_version: ${{ env.PACKER_VERSION }}
         
-    - name: Initialize Packer (install plugins)
-      run: |
-        cd packer
-        packer init .
-        
     - name: Validate Packer template
       run: |
         cd packer
